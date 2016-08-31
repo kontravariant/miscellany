@@ -24,4 +24,7 @@ plot(rgdp.pre,type='o');lines(fitted(fit.pre),col=2)
 mdl = auto.arima(rgdp.pre)
 
 fca = forecast.Arima(mdl, 30)
-g = ggplot(fca) + geom_line(gr
+plot(fca);lines(rgdp)
+diff.rel = (tail(fca$mean,1)-tail(rgdp,1))/tail(rgdp,1)
+diff.pct = absdiff*100
+est = 707*(1+diff.rel)
